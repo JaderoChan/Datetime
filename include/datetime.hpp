@@ -272,7 +272,7 @@ inline bool isValidYearday(int yearday) { return yearday >= 1 && yearday <= 366;
 inline bool isValidYearday(int yearday, int year)
 {
     return (isLeapYear(year) && yearday >= 1 && yearday <= 366) ||
-           (yearday >= 1 && yearday <= 365);
+        (yearday >= 1 && yearday <= 365);
 }
 
 inline bool isValidUtcOffset(double utcOffset) { return utcOffset >= -12.0 && utcOffset <= 14.0; }
@@ -371,7 +371,7 @@ inline std::string timeToString(std::time_t time,
         year = '0' + year;
 
     return year + dateSeparator + mon + dateSeparator + day + separator +
-           hour + timeSeparator + min + timeSeparator + sec;
+        hour + timeSeparator + min + timeSeparator + sec;
 }
 
 inline std::time_t stringToTime(const std::string& str)
