@@ -14,8 +14,8 @@
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -28,10 +28,10 @@
 #ifndef DATETIME_HPP
 #define DATETIME_HPP
 
-#include <cstdlib>  // atoi()
-#include <ctime>    // time_t, tm, time(), localtime_s(), strftime(), mktime()
-#include <string>
 #include <cassert>
+#include <cstdlib> // atoi()
+#include <ctime>   // time_t, tm, time(), localtime_s(), strftime(), mktime()
+#include <string>
 
 // Datetime namespace.
 namespace dt
@@ -48,7 +48,7 @@ namespace dt
 using uchar = unsigned char;
 using uint = unsigned int;
 
-}
+} // namespace dt
 
 // Enum and constants.
 namespace dt
@@ -69,40 +69,20 @@ constexpr uint MINUTE_SECONDS = 60;
 constexpr uint HOUR_SECONDS = 60 * MINUTE_SECONDS;
 constexpr uint DAY_SECONDS = 24 * HOUR_SECONDS;
 
+// clang-format off
 // Month string arrays.
 // Just for the code block can be fold.
 namespace
 {
 
-constexpr const char* MONTH_STR_EN[] = {
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-};
+constexpr const char* MONTH_STR_EN[] = { "January", "February", "March",
+                                         "April",   "May",      "June",
+                                         "July",    "August",   "September",
+                                         "October", "November", "December" };
 
-constexpr const char* MONTH_STR_EN_SHORT[] = {
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-};
+constexpr const char* MONTH_STR_EN_SHORT[] = { "Jan", "Feb", "Mar", "Apr",
+                                               "May", "Jun", "Jul", "Aug",
+                                               "Sep", "Oct", "Nov", "Dec" };
 
 constexpr const char* MONTH_STR_CN[] = {
     "\xE4\xB8\x80\xE6\x9C\x88",
@@ -130,8 +110,10 @@ constexpr const char* MONTH_STR_JP[] = {
     "\xE3\x81\xAF\xE3\x81\xA1\xE3\x81\x8C\xE3\x81\xA4",
     "\xE3\x81\x8F\xE3\x81\x8C\xE3\x81\xA4",
     "\xE3\x81\x98\xE3\x82\x85\xE3\x81\x86\xE3\x81\x8C\xE3\x81\xA4",
-    "\xE3\x81\x98\xE3\x82\x85\xE3\x81\x86\xE3\x81\x84\xE3\x81\xA1\xE3\x81\x8C\xE3\x81\xA4",
-    "\xE3\x81\x98\xE3\x82\x85\xE3\x81\x86\xE3\x81\xAB\xE3\x81\x8C\xE3\x81\xA4"
+    "\xE3\x81\x98\xE3\x82\x85\xE3\x81\x86\xE3\x81\x84\xE3\x81\xA1\xE3\x81"
+    "\x8C\xE3\x81\xA4",
+    "\xE3\x81\x98\xE3\x82\x85\xE3\x81\x86\xE3\x81\xAB\xE3\x81\x8C\xE3\x81"
+    "\xA4"
 };
 
 constexpr const char* MONTH_STR_KR[] = {
@@ -149,32 +131,19 @@ constexpr const char* MONTH_STR_KR[] = {
     "\xEC\x8B\xAD\xEC\x9D\xB4\xEC\x9B\x94"
 };
 
-}
+} // namespace
 
 // Weekday string arrays.
 // Just for the code block can be fold.
 namespace
 {
 
-constexpr const char* WEEK_STR_EN[] = {
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-};
+constexpr const char* WEEK_STR_EN[] = { "Sunday",    "Monday",   "Tuesday",
+                                        "Wednesday", "Thursday", "Friday",
+                                        "Saturday" };
 
-constexpr const char* WEEK_STR_EN_SHORT[] = {
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat"
-};
+constexpr const char* WEEK_STR_EN_SHORT[] = { "Sun", "Mon", "Tue", "Wed",
+                                              "Thu", "Fri", "Sat" };
 
 constexpr const char* WEEK_STR_CN[] = {
     "\xE6\x98\x9F\xE6\x9C\x9F\xE6\x97\xA5",
@@ -206,17 +175,25 @@ constexpr const char* WEEK_STR_KR[] = {
     "\xED\x86\xA0\xEC\x9A\x94\xEC\x9D\xBC"
 };
 
-}
+} // namespace
 
-}
+// clang-format on
+
+} // namespace dt
 
 // Utility functions.
 namespace dt
 {
 
-inline bool isLeapYear(int year) { return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0; }
+inline bool isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
 
-inline bool isValidMonth(int month) { return month >= 1 && month <= 12; }
+inline bool isValidMonth(int month)
+{
+    return month >= 1 && month <= 12;
+}
 
 inline bool isLongMonth(int month)
 {
@@ -232,7 +209,10 @@ inline bool isShortMonth(int month)
     return (month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 == 1);
 }
 
-inline bool isValidDay(int day) { return day >= 1 && day <= 31; }
+inline bool isValidDay(int day)
+{
+    return day >= 1 && day <= 31;
+}
 
 inline bool isValidDay(int day, int month)
 {
@@ -259,25 +239,45 @@ inline bool isValidDay(int day, int month, int year)
     return true;
 }
 
-inline bool isValidHour(int hour) { return hour >= 0 && hour <= 23; }
+inline bool isValidHour(int hour)
+{
+    return hour >= 0 && hour <= 23;
+}
 
-inline bool isValidMinute(int minute) { return minute >= 0 && minute <= 59; }
+inline bool isValidMinute(int minute)
+{
+    return minute >= 0 && minute <= 59;
+}
 
-inline bool isValidSecond(int second) { return second >= 0 && second <= 59; }
+inline bool isValidSecond(int second)
+{
+    return second >= 0 && second <= 59;
+}
 
-inline bool isValidWeekday(int weekday) { return weekday >= 1 && weekday <= 7; }
+inline bool isValidWeekday(int weekday)
+{
+    return weekday >= 1 && weekday <= 7;
+}
 
-inline bool isValidYearday(int yearday) { return yearday >= 1 && yearday <= 366; }
+inline bool isValidYearday(int yearday)
+{
+    return yearday >= 1 && yearday <= 366;
+}
 
 inline bool isValidYearday(int yearday, int year)
 {
-    return (isLeapYear(year) && yearday >= 1 && yearday <= 366) ||
-        (yearday >= 1 && yearday <= 365);
+    return (isLeapYear(year) && yearday >= 1 && yearday <= 366) || (yearday >= 1 && yearday <= 365);
 }
 
-inline bool isValidUtcOffset(double utcOffset) { return utcOffset >= -12.0 && utcOffset <= 14.0; }
+inline bool isValidUtcOffset(double utcOffset)
+{
+    return utcOffset >= -12.0 && utcOffset <= 14.0;
+}
 
-inline int daysOfYear(int year) { return isLeapYear(year) ? 366 : 365; }
+inline int daysOfYear(int year)
+{
+    return isLeapYear(year) ? 366 : 365;
+}
 
 inline std::time_t currentTime()
 {
@@ -346,8 +346,8 @@ inline std::string getWeekName(int week, LocalFlag localFlag)
     }
 }
 
-inline std::string timeToString(std::time_t time,
-                                char timeSeparator = ':', char dateSeparator = '-', char separator = ' ')
+inline std::string timeToString(std::time_t time, char timeSeparator = ':', char dateSeparator = '-',
+                                char separator = ' ')
 {
     std::tm lt;
     localtime_s(&lt, &time);
@@ -370,8 +370,8 @@ inline std::string timeToString(std::time_t time,
     else if (y < 1000)
         year = '0' + year;
 
-    return year + dateSeparator + mon + dateSeparator + day + separator +
-        hour + timeSeparator + min + timeSeparator + sec;
+    return year + dateSeparator + mon + dateSeparator + day + separator + hour + timeSeparator + min + timeSeparator +
+           sec;
 }
 
 inline std::time_t stringToTime(const std::string& str)
@@ -392,7 +392,7 @@ inline std::string currentTimeString(char timeSeparator = ':', char dateSeparato
     return timeToString(currentTime(), timeSeparator, dateSeparator, separator);
 }
 
-}
+} // namespace dt
 
 // Classes.
 namespace dt
@@ -401,15 +401,9 @@ namespace dt
 class DateTime
 {
 public:
-    static DateTime fromCurrentTime()
-    {
-        return DateTime(currentTime());
-    }
+    static DateTime fromCurrentTime() { return DateTime(currentTime()); }
 
-    static DateTime fromString(const std::string& str)
-    {
-        return DateTime(stringToTime(str));
-    }
+    static DateTime fromString(const std::string& str) { return DateTime(stringToTime(str)); }
 
     DateTime() = default;
 
@@ -446,19 +440,13 @@ public:
         else if (year_ < 1000)
             year = '0' + year;
 
-        return year + dateSeparator + mon + dateSeparator + day + separator +
-            hour + timeSeparator + min + timeSeparator + sec;
+        return year + dateSeparator + mon + dateSeparator + day + separator + hour + timeSeparator + min +
+               timeSeparator + sec;
     }
 
-    std::string weekName(LocalFlag localFlag) const
-    {
-        return getWeekName(weekday_, localFlag);
-    }
+    std::string weekName(LocalFlag localFlag) const { return getWeekName(weekday_, localFlag); }
 
-    std::string monthName(LocalFlag localFlag) const
-    {
-        return getMonthName(month_, localFlag);
-    }
+    std::string monthName(LocalFlag localFlag) const { return getMonthName(month_, localFlag); }
 
     std::time_t time() const
     {
@@ -504,13 +492,9 @@ struct TimeRange
 {
     TimeRange() = default;
 
-    TimeRange(std::time_t start, std::time_t end) :
-        start(start), end(end)
-    {}
+    TimeRange(std::time_t start, std::time_t end) : start(start), end(end) {}
 
-    TimeRange(const std::string& start, const std::string& end) :
-        start(stringToTime(start)), end(stringToTime(end))
-    {}
+    TimeRange(const std::string& start, const std::string& end) : start(stringToTime(start)), end(stringToTime(end)) {}
 
     bool isValid() const { return start != -1 && end != -1 && start <= end; }
 
@@ -524,6 +508,6 @@ struct TimeRange
 
 constexpr TimeRange ALL_TIME = TimeRange();
 
-}
+} // namespace dt
 
 #endif // !DATETIME_HPP
