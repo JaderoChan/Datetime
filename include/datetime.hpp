@@ -208,15 +208,21 @@ constexpr const char* WEEK_STR_KR[] = {
 
 }
 
-}
+} // namespace dt
 
 // Utility functions.
 namespace dt
 {
 
-inline bool isLeapYear(int year) { return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0; }
+inline bool isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
 
-inline bool isValidMonth(int month) { return month >= 1 && month <= 12; }
+inline bool isValidMonth(int month)
+{
+    return month >= 1 && month <= 12;
+}
 
 inline bool isLongMonth(int month)
 {
@@ -232,7 +238,10 @@ inline bool isShortMonth(int month)
     return (month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 == 1);
 }
 
-inline bool isValidDay(int day) { return day >= 1 && day <= 31; }
+inline bool isValidDay(int day)
+{
+    return day >= 1 && day <= 31;
+}
 
 inline bool isValidDay(int day, int month)
 {
@@ -259,25 +268,45 @@ inline bool isValidDay(int day, int month, int year)
     return true;
 }
 
-inline bool isValidHour(int hour) { return hour >= 0 && hour <= 23; }
+inline bool isValidHour(int hour)
+{
+    return hour >= 0 && hour <= 23;
+}
 
-inline bool isValidMinute(int minute) { return minute >= 0 && minute <= 59; }
+inline bool isValidMinute(int minute)
+{
+    return minute >= 0 && minute <= 59;
+}
 
-inline bool isValidSecond(int second) { return second >= 0 && second <= 59; }
+inline bool isValidSecond(int second)
+{
+    return second >= 0 && second <= 59;
+}
 
-inline bool isValidWeekday(int weekday) { return weekday >= 1 && weekday <= 7; }
+inline bool isValidWeekday(int weekday)
+{
+    return weekday >= 1 && weekday <= 7;
+}
 
-inline bool isValidYearday(int yearday) { return yearday >= 1 && yearday <= 366; }
+inline bool isValidYearday(int yearday)
+{
+    return yearday >= 1 && yearday <= 366;
+}
 
 inline bool isValidYearday(int yearday, int year)
 {
-    return (isLeapYear(year) && yearday >= 1 && yearday <= 366) ||
-        (yearday >= 1 && yearday <= 365);
+    return (isLeapYear(year) && yearday >= 1 && yearday <= 366) || (yearday >= 1 && yearday <= 365);
 }
 
-inline bool isValidUtcOffset(double utcOffset) { return utcOffset >= -12.0 && utcOffset <= 14.0; }
+inline bool isValidUtcOffset(double utcOffset)
+{
+    return utcOffset >= -12.0 && utcOffset <= 14.0;
+}
 
-inline int daysOfYear(int year) { return isLeapYear(year) ? 366 : 365; }
+inline int daysOfYear(int year)
+{
+    return isLeapYear(year) ? 366 : 365;
+}
 
 inline std::time_t currentTime()
 {
@@ -392,7 +421,7 @@ inline std::string currentTimeString(char timeSeparator = ':', char dateSeparato
     return timeToString(currentTime(), timeSeparator, dateSeparator, separator);
 }
 
-}
+} // namespace dt
 
 // Classes.
 namespace dt
@@ -401,15 +430,9 @@ namespace dt
 class DateTime
 {
 public:
-    static DateTime fromCurrentTime()
-    {
-        return DateTime(currentTime());
-    }
+    static DateTime fromCurrentTime() { return DateTime(currentTime()); }
 
-    static DateTime fromString(const std::string& str)
-    {
-        return DateTime(stringToTime(str));
-    }
+    static DateTime fromString(const std::string& str) { return DateTime(stringToTime(str)); }
 
     DateTime() = default;
 
@@ -450,15 +473,9 @@ public:
             hour + timeSeparator + min + timeSeparator + sec;
     }
 
-    std::string weekName(LocalFlag localFlag) const
-    {
-        return getWeekName(weekday_, localFlag);
-    }
+    std::string weekName(LocalFlag localFlag) const { return getWeekName(weekday_, localFlag); }
 
-    std::string monthName(LocalFlag localFlag) const
-    {
-        return getMonthName(month_, localFlag);
-    }
+    std::string monthName(LocalFlag localFlag) const { return getMonthName(month_, localFlag); }
 
     std::time_t time() const
     {
@@ -504,13 +521,9 @@ struct TimeRange
 {
     TimeRange() = default;
 
-    TimeRange(std::time_t start, std::time_t end) :
-        start(start), end(end)
-    {}
+    TimeRange(std::time_t start, std::time_t end) : start(start), end(end) {}
 
-    TimeRange(const std::string& start, const std::string& end) :
-        start(stringToTime(start)), end(stringToTime(end))
-    {}
+    TimeRange(const std::string& start, const std::string& end) : start(stringToTime(start)), end(stringToTime(end)) {}
 
     bool isValid() const { return start != -1 && end != -1 && start <= end; }
 
@@ -524,6 +537,6 @@ struct TimeRange
 
 constexpr TimeRange ALL_TIME = TimeRange();
 
-}
+} // namespace dt
 
 #endif // !DATETIME_HPP
