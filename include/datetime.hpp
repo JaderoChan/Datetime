@@ -29,9 +29,9 @@
 #define DATETIME_HPP
 
 #include <cstdlib>  // atoi()
-#include <ctime>    // time_t, tm, time(), localtime_s(), strftime(), mktime()
-#include <string>
-#include <cassert>
+#include <ctime>    // time_t, tm, time(), localtime_s(), strftime(), mktime(), gmtime_s()
+#include <string>   // string, to_string(), atoi()
+#include <cassert>  // assert()
 
 // Datetime namespace.
 namespace dt
@@ -45,8 +45,8 @@ namespace dt
 namespace dt
 {
 
-using uchar = unsigned char;
-using uint = unsigned int;
+using uchar     = unsigned char;
+using uint      = unsigned int;
 
 }
 
@@ -65,9 +65,9 @@ enum LocalFlag : uint
     LF_KR
 };
 
-constexpr uint MINUTE_SECONDS = 60;
-constexpr uint HOUR_SECONDS = 60 * MINUTE_SECONDS;
-constexpr uint DAY_SECONDS = 24 * HOUR_SECONDS;
+constexpr uint MINUTE_SECONDS   = 60;
+constexpr uint HOUR_SECONDS     = 60 * MINUTE_SECONDS;
+constexpr uint DAY_SECONDS      = 24 * HOUR_SECONDS;
 
 // Month string arrays.
 // Just for the code block can be fold.
@@ -227,14 +227,12 @@ inline bool isValidMonth(int month)
 inline bool isLongMonth(int month)
 {
     assert(isValidMonth(month));
-
     return (month <= 7 && month % 2 == 1) || (month >= 8 && month % 2 == 0);
 }
 
 inline bool isShortMonth(int month)
 {
     assert(isValidMonth(month));
-
     return (month <= 7 && month % 2 == 0) || (month >= 8 && month % 2 == 1);
 }
 
@@ -531,8 +529,8 @@ struct TimeRange
 
     bool contains(const std::string& str) const { return contains(stringToTime(str)); }
 
-    std::time_t start = -1;
-    std::time_t end = -1;
+    std::time_t start   = -1;
+    std::time_t end     = -1;
 };
 
 constexpr TimeRange ALL_TIME = TimeRange();
