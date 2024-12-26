@@ -1,7 +1,7 @@
-// The "Datetime" library written in c++.
+// The "Datetime" library, in c++.
 //
 // Web: https://github.com/JaderoChan/Datetime
-// You can contact me at: c_dl_cn@outlook.com
+// You can contact me by email: c_dl_cn@outlook.com
 //
 // MIT License
 //
