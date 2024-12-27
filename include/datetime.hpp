@@ -428,10 +428,6 @@ namespace dt
 class DateTime
 {
 public:
-    static DateTime fromCurrentTime() { return DateTime(currentTime()); }
-
-    static DateTime fromString(const std::string& str) { return DateTime(stringToTime(str)); }
-
     DateTime() = default;
 
     DateTime(std::time_t time)
@@ -448,6 +444,10 @@ public:
         weekday_ = lt.tm_wday + 1;
         yearday_ = lt.tm_yday + 1;
     }
+
+    static DateTime fromCurrentTime() { return DateTime(currentTime()); }
+
+    static DateTime fromString(const std::string& str) { return DateTime(stringToTime(str)); }
 
     std::string toString(char timeSeparator = ':', char dateSeparator = '-', char separator = ' ') const
     {
