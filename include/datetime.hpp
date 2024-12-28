@@ -33,7 +33,7 @@
 #include <string>   // string, to_string(), atoi()
 #include <cassert>  // assert()
 
-/// @brief Datetime namespace.
+// Datetime namespace.
 namespace dt
 {
 
