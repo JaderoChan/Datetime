@@ -69,8 +69,6 @@ constexpr uint MINUTE_SECONDS   = 60;
 constexpr uint HOUR_SECONDS     = 60 * MINUTE_SECONDS;
 constexpr uint DAY_SECONDS      = 24 * HOUR_SECONDS;
 
-// Month string arrays.
-
 constexpr const char* MONTH_STR_EN[] = {
     "January",
     "February",
@@ -145,8 +143,6 @@ constexpr const char* MONTH_STR_KR[] = {
     "\xEC\x8B\xAD\xEC\x9D\xBC\xEC\x9B\x94",
     "\xEC\x8B\xAD\xEC\x9D\xB4\xEC\x9B\x94"
 };
-
-// Weekday string arrays.
 
 constexpr const char* WEEK_STR_EN[] = {
     "Sunday",
