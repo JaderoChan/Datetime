@@ -2,7 +2,7 @@
 //
 // Web: https://github.com/JaderoChan/Datetime
 // You can contact me by email: c_dl_cn@outlook.com
-//
+
 // MIT License
 //
 // Copyright (c) 2024 頔珞JaderoChan
@@ -33,7 +33,7 @@
 #include <string>   // string, to_string(), atoi()
 #include <cassert>  // assert()
 
-// Datetime namespace.
+/// @brief Datetime namespace.
 namespace dt
 {
 
@@ -70,9 +70,6 @@ constexpr uint HOUR_SECONDS     = 60 * MINUTE_SECONDS;
 constexpr uint DAY_SECONDS      = 24 * HOUR_SECONDS;
 
 // Month string arrays.
-// Just for the code block can be fold.
-namespace
-{
 
 constexpr const char* MONTH_STR_EN[] = {
     "January",
@@ -149,12 +146,7 @@ constexpr const char* MONTH_STR_KR[] = {
     "\xEC\x8B\xAD\xEC\x9D\xB4\xEC\x9B\x94"
 };
 
-}
-
 // Weekday string arrays.
-// Just for the code block can be fold.
-namespace
-{
 
 constexpr const char* WEEK_STR_EN[] = {
     "Sunday",
@@ -205,8 +197,6 @@ constexpr const char* WEEK_STR_KR[] = {
     "\xEA\xB8\x88\xEC\x9A\x94\xEC\x9D\xBC",
     "\xED\x86\xA0\xEC\x9A\x94\xEC\x9D\xBC"
 };
-
-}
 
 } // namespace dt
 
