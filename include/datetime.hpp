@@ -41,20 +41,11 @@ namespace dt
 
 }
 
-// Type alias.
-namespace dt
-{
-
-using uchar     = unsigned char;
-using uint      = unsigned int;
-
-}
-
 // Enum and constants.
 namespace dt
 {
 
-enum LocalFlag : uint
+enum LocalFlag
 {
     LF_NUM,
     LF_NUM_PADDING,
@@ -65,9 +56,9 @@ enum LocalFlag : uint
     LF_KR
 };
 
-constexpr uint MINUTE_SECONDS   = 60;
-constexpr uint HOUR_SECONDS     = 60 * MINUTE_SECONDS;
-constexpr uint DAY_SECONDS      = 24 * HOUR_SECONDS;
+constexpr int MINUTE_SECONDS   = 60;
+constexpr int HOUR_SECONDS     = 60 * MINUTE_SECONDS;
+constexpr int DAY_SECONDS      = 24 * HOUR_SECONDS;
 
 constexpr const char* MONTH_STR_EN[] = {
     "January",
@@ -476,29 +467,29 @@ public:
 
     int year() const { return year_; }
 
-    uchar month() const { return month_; }
+    int month() const { return month_; }
 
-    uchar day() const { return day_; }
+    int day() const { return day_; }
 
-    uchar hour() const { return hour_; }
+    int hour() const { return hour_; }
 
-    uchar minute() const { return min_; }
+    int minute() const { return min_; }
 
-    uchar second() const { return sec_; }
+    int second() const { return sec_; }
 
-    uchar weekday() const { return weekday_; }
+    int weekday() const { return weekday_; }
 
-    uchar yearday() const { return yearday_; }
+    int yearday() const { return yearday_; }
 
 private:
     int year_;
-    uchar month_;
-    uchar day_;
-    uchar hour_;
-    uchar min_;
-    uchar sec_;
-    uchar weekday_;
-    uchar yearday_;
+    char month_;
+    char day_;
+    char hour_;
+    char min_;
+    char sec_;
+    char weekday_;
+    short yearday_;
 };
 
 struct TimeRange
